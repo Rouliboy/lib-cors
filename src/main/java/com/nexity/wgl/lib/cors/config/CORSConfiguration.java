@@ -3,9 +3,13 @@ package com.nexity.wgl.lib.cors.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class CORSConfiguration {
 
@@ -16,14 +20,14 @@ public class CORSConfiguration {
 			@Override
 			public void addCorsMappings(final CorsRegistry registry) {
 
-				// log.info("Ajout du CORS *");
+				log.info("Ajout du CORS *");
 
 				// @formatter:off
 				registry.addMapping("/**")
 					.allowedHeaders("*")
 					.allowedMethods("*")
 					.allowedOrigins("*")
-					.exposedHeaders("Authorization");
+					.exposedHeaders(HttpHeaders.AUTHORIZATION);
 				// @formatter:on
 			}
 		};
